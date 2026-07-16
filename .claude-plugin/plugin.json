@@ -1,0 +1,29 @@
+{
+  "name": "hclz-skills",
+  "version": "1.0.0",
+  "description": "hcl-z's agent skills — grilling, specs, architecture, prototyping, handoff, and writing skills.",
+  "author": {
+    "name": "hcl-z",
+    "url": "https://github.com/hcl-z"
+  },
+  "homepage": "https://github.com/hcl-z/skills",
+  "repository": "https://github.com/hcl-z/skills",
+  "license": "MIT",
+  "keywords": [
+    "engineering",
+    "skills",
+    "grilling",
+    "spec",
+    "prototype",
+    "architecture",
+    "handoff"
+  ],
+  "skills": [
+    "./skills/grilling",
+    "./skills/handoff",
+    "./skills/improve-codebase-architecture",
+    "./skills/prototype",
+    "./skills/to-spec",
+    "./skills/writing-great-skills"
+  ]
+}

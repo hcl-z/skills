@@ -1,0 +1,25 @@
+{
+  "name": "hcl-z",
+  "owner": {
+    "name": "hcl-z",
+    "url": "https://github.com/hcl-z"
+  },
+  "description": "hcl-z's skills for real engineering, as an installable Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "hclz-skills",
+      "source": "./",
+      "description": "hcl-z's agent skills — grilling, specs, architecture, prototyping, handoff, and writing skills.",
+      "category": "engineering",
+      "keywords": [
+        "engineering",
+        "skills",
+        "grilling",
+        "spec",
+        "prototype",
+        "architecture",
+        "handoff"
+      ]
+    }
+  ]
+}
