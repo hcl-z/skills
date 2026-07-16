@@ -24,6 +24,8 @@
     "./skills/improve-codebase-architecture",
     "./skills/prototype",
     "./skills/to-spec",
+    "./skills/work-bootstrap",
+    "./skills/work-sync",
     "./skills/writing-great-skills"
   ]
 }

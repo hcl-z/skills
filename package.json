@@ -7,5 +7,12 @@
     "type": "git",
     "url": "https://github.com/hcl-z/skills"
   },
+  "scripts": {
+    "bump": "npx changelogen@latest --bump && npm run sync",
+    "bump:patch": "npx changelogen@latest --patch && npm run sync",
+    "bump:minor": "npx changelogen@latest --minor && npm run sync",
+    "bump:major": "npx changelogen@latest --major && npm run sync",
+    "sync": "./scripts/sync-plugin.sh"
+  },
   "license": "MIT"
 }
