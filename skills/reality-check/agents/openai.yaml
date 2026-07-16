@@ -1,0 +1,5 @@
+interface:
+  display_name: "Reality Check"
+  short_description: "Pressure-test an idea against technical reality"
+policy:
+  allow_implicit_invocation: false

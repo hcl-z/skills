@@ -1,6 +1,6 @@
 {
   "name": "hclz-skills",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "hcl-z's agent skills for real engineering",
   "repository": {
@@ -8,10 +8,9 @@
     "url": "https://github.com/hcl-z/skills"
   },
   "scripts": {
-    "bump": "npx changelogen@latest --bump && npm run sync",
-    "bump:patch": "npx changelogen@latest --patch && npm run sync",
-    "bump:minor": "npx changelogen@latest --minor && npm run sync",
-    "bump:major": "npx changelogen@latest --major && npm run sync",
+    "bump:patch": "npx changelogen@latest --bump --patch && npm run sync",
+    "bump:minor": "npx changelogen@latest --bump --minor && npm run sync",
+    "bump:major": "npx changelogen@latest --bump --major && npm run sync",
     "sync": "./scripts/sync-plugin.sh"
   },
   "license": "MIT"
