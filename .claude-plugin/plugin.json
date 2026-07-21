@@ -1,6 +1,6 @@
 {
   "name": "hclz-skills",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "hcl-z's agent skills — grilling, specs, architecture, prototyping, handoff, and writing skills.",
   "author": {
     "name": "hcl-z",
@@ -25,6 +25,7 @@
     "./skills/prototype",
     "./skills/reality-check",
     "./skills/to-spec",
+    "./skills/use-akshare",
     "./skills/work-bootstrap",
     "./skills/work-sync",
     "./skills/writing-great-skills"

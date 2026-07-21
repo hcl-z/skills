@@ -1,0 +1,3 @@
+interface:
+  display_name: "Use AKShare"
+  short_description: "Look up AKShare financial data APIs and generate runnable code"

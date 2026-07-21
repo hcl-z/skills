@@ -86,6 +86,7 @@ Keep `.claude-plugin/plugin.json`'s `version` in sync with `package.json`'s — 
 ### Model-invoked
 
 - **[prototype](./skills/prototype/SKILL.md)** — Build a throwaway prototype to answer a design question: a runnable terminal app for state/logic, or several toggleable UI variations.
+- **[use-akshare](./skills/use-akshare/SKILL.md)** — Look up the right AKShare Python API for financial data needs and generate runnable code with input/output specifications.
 
 ## License
 
