@@ -79,8 +79,8 @@ Keep `.claude-plugin/plugin.json`'s `version` in sync with `package.json`'s — 
 - **[improve-codebase-architecture](./skills/improve-codebase-architecture/SKILL.md)** — Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick.
 - **[reality-check](./skills/reality-check/SKILL.md)** — Pressure-test an idea against technical reality — feasibility, corrections, improvements — in discussion.
 - **[to-spec](./skills/to-spec/SKILL.md)** — Turn the current conversation into a spec and publish it to the project issue tracker — no interview, just synthesis of what you've already discussed.
-- **[work-bootstrap](./skills/work-bootstrap/SKILL.md)** — Scaffold a repo's AI-readable docs — `CLAUDE.md` plus the `docs/` knowledge base (DOMAIN, CONSTRAINTS, DESIGN) — where none exist yet.
-- **[work-sync](./skills/work-sync/SKILL.md)** — Reconcile `CLAUDE.md` and `docs/` guidance with what the code actually does now, after behavior, contracts, commands, constraints, or UI rules changed.
+- **[work-bootstrap](./skills/work-bootstrap/SKILL.md)** — Create a repo's `CLAUDE.md` and empty project-document placeholders, then initialize the docs with `/work-sync`.
+- **[work-sync](./skills/work-sync/SKILL.md)** — Sync project docs after implementation, including evidence-backed repository constraints.
 - **[writing-great-skills](./skills/writing-great-skills/SKILL.md)** — Reference for writing and editing skills well — the vocabulary and principles that make a skill predictable.
 
 ### Model-invoked

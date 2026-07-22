@@ -1,16 +1,19 @@
-Skills live as one folder per skill under `skills/`:
+# CLAUDE.md
 
-```
-skills/
-  <skill-name>/
-    SKILL.md          # frontmatter (name, description, optional disable-model-invocation) + the skill body
-    agents/openai.yaml   # Codex UI metadata + invocation policy (keep in sync with SKILL.md)
-```
+These instructions apply to all AI assistants working in this repository.
 
-Every skill in `skills/` is shipped by the Claude Code plugin and must have an entry in the top-level `README.md`'s **Reference** list and a path in `.claude-plugin/plugin.json`'s `skills` array. Run `claude plugin validate . --strict` after touching either manifest.
+## Documentation
 
-The repo is also its own single-plugin Claude Code marketplace: `.claude-plugin/marketplace.json` lists the one `hclz-skills` plugin (install with `claude plugin install hclz-skills@hcl-z`). When bumping the release version, keep `.claude-plugin/plugin.json`'s `version` in sync with `package.json`'s — Claude uses the plugin `version` to decide when installed users see an update.
+Project-specific knowledge lives in `docs/`. Read the relevant document before making changes:
 
-Every `SKILL.md` is either user-invoked (`disable-model-invocation: true` plus `policy.allow_implicit_invocation: false` in `agents/openai.yaml`, reachable only by the human) or model-invoked (model- or user-reachable). See [.agents/invocation.md](./.agents/invocation.md).
+- `docs/DOMAIN.md` — Project context, data models, architecture, and file routing. Read before changing business logic or data structures.
+- `docs/CONSTRAINTS.md` — Repository rules grouped by risk. Each rule uses `- [level | source] Rule.` plus `Evidence:`; `level` indicates enforcement priority and `source` records whether the user required it or the assistant inferred it. Read the relevant category before changing core logic, APIs, auth, data processing, or build workflows.
+- `docs/DESIGN.md` — Optional visual and interaction guidance. Read before changing user-visible UI.
 
-To (re)link every skill into the local harness skill directories (`~/.claude/skills`, `~/.agents/skills`), run `scripts/link-skills.sh`. Each entry is a symlink into this repo, so a `git pull` keeps installed skills current; re-run the script after adding, removing, or renaming a skill.
+When multiple documents apply, use this precedence:
+
+1. `CONSTRAINTS.md` for technical, security, compatibility, and operational requirements.
+2. `DESIGN.md` for visual and interaction decisions.
+3. `DOMAIN.md` for project context, terminology, and code navigation.
+
+Keep detailed domain knowledge in `DOMAIN.md`, mandatory rules in `CONSTRAINTS.md`, and UI guidance in `DESIGN.md`.

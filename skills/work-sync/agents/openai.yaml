@@ -1,5 +1,3 @@
 interface:
   display_name: "Work Sync"
-  short_description: "Reconcile docs with current code"
-policy:
-  allow_implicit_invocation: false
+  short_description: "Sync project docs after implementation"

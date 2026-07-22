@@ -1,5 +1,5 @@
 interface:
   display_name: "Work Bootstrap"
-  short_description: "Scaffold a repo's CLAUDE.md and docs/"
+  short_description: "Create CLAUDE.md and docs placeholders"
 policy:
   allow_implicit_invocation: false

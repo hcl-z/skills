@@ -1,53 +1,49 @@
 ---
 name: work-sync
-description: Reconcile CLAUDE.md and docs/ guidance with what the code actually does now, after behavior, contracts, commands, constraints, or UI rules changed.
-disable-model-invocation: true
+description: Sync project docs (`docs/DOMAIN.md`, `docs/CONSTRAINTS.md`, `docs/DESIGN.md`) with current implementation and harvest evidence-backed repository constraints.
 argument-hint: "Describe the changed behavior, files, or session decisions to reconcile"
 ---
 
 # Sync Project Docs
 
-Reconcile the repo's four-document guidance contract with current implementation, with the smallest edits that make it truthful again:
+Reconcile three docs with the smallest edits that make them truthful against current implementation:
 
-- `CLAUDE.md` — concise entry point and routing.
-- `docs/DOMAIN.md` — project truth, terminology, data model, output model, file routing.
-- `docs/CONSTRAINTS.md` — non-negotiable rules grouped by the repo's actual risks.
-- `docs/DESIGN.md` — verified visual/UI/frontend rules.
+- `docs/DOMAIN.md` — project truth. Generate or update from sibling [DOMAIN.md](DOMAIN.md).
+- `docs/CONSTRAINTS.md` — non-negotiable rules under `# Constraints`, grouped by the repo's actual risks.
+- `docs/DESIGN.md` — verified UI rules. Keep empty until any exist.
 
-## Scope
-
-- Sync only for changes that affect behavior, navigation, contracts, or constraints — not for formatting or internal refactoring that leaves behavior intact.
-- Edit the smallest affected set; preserve valid detail and terminology, and replace any claim the evidence contradicts.
+Sync only for changes to behavior, contracts, or constraints — not formatting or behavior-preserving refactors. Treat durable user requirements stated in this repo as repository rules.
 
 ## Evidence Order
 
-Resolve discrepancies in this order:
+Resolve discrepancies in this order, and carry anything you cannot verify to `Known Gaps` in `DOMAIN.md`:
 
 1. Current implementation, tests, and executable configuration.
-2. Deliberate session decisions confirmed by the user or implemented this session.
-3. Versioned fixtures and representative generated output (exclude secrets and ignored artifacts unless the user authorizes inspection).
+2. Session decisions confirmed by the user or implemented this session.
+3. Versioned fixtures and representative generated output.
 4. Existing documentation and README prose.
 
-Record verified behavior only; carry anything you cannot verify to `Known Gaps` in `DOMAIN.md`, naming the code or config that needs a decision.
+## Constraint Harvesting
+
+Inspect the request, session decisions, current diff, validation results, tests, and executable configuration for durable repository rules. Write each rule as:
+
+```md
+- [level | source] Rule.
+  Evidence: owning path, test, config, or validation command.
+```
+
+- `low | assistant` — implementation evidence first reveals it.
+- `medium | user` — an explicit durable user requirement.
+- `high` — the user makes it non-negotiable, or the rule is enforced by tests, config, CI, security, data integrity, or a compatibility contract.
+
+Upgrade `low → medium` when the rule gains independent evidence or a second owning path. Upgrade to `high` only under the `high` conditions above. Before adding a rule, search for a semantically equivalent one and update it in place. Retire a `low` rule when current implementation no longer supports it; a `medium` or `high` rule stays only while current evidence still supports it, otherwise raise the conflict as a `Known Gaps` item in `DOMAIN.md`.
+
+Keep each rule in the one risk category where it most directly belongs. Create a category only when a verified rule needs it.
 
 ## Procedure
 
-1. Find the change surface from the user's request, the current diff, and this session's completed work. Read only the owning source, its relevant test or config, and the four docs.
-2. Build a compact fact table: each changed fact, its evidence, the document that owns it, and whether it is new, corrected, or removed.
-3. Route each fact by ownership:
-   - Navigation and concise routing → `CLAUDE.md`.
-   - Project truth → `docs/DOMAIN.md`, in this section order: Project Purpose; Domain Concepts and Terminology; Data Model and External Contracts; Primary Workflows; Architecture and Ownership; Repository Map; Change Routing; Runtime and Local Commands; Known Gaps.
-   - Must-not-break rules → `docs/CONSTRAINTS.md`, in project-specific categories (create a category only for a verified rule; merge sparse related rules; split only when ownership, risk, or validation differs).
-   - Verified visual language, component, layout, responsive, accessibility, and interaction rules → `docs/DESIGN.md`.
-4. Reconcile duplication across the contract: `CLAUDE.md` summarizes and routes; `DOMAIN.md` and `CONSTRAINTS.md` own the detail. In `Repository Map` use `Path` / `Responsibility` / `Read Before Changing`; in `Change Routing` use `Change Type` / `Start Here` / `Also Read`.
-5. For `docs/DESIGN.md`: add a rule only once it is implemented or user-approved; keep the file empty when no verified UI guidance exists.
-6. Validate — see completion criteria below.
-
-## Completion: Validate
-
-Done when every one of these holds:
-
-- Every edited statement traces to current code, config, verified output, or a confirmed session decision.
-- `CLAUDE.md` still routes readers to `DOMAIN.md`, `CONSTRAINTS.md`, and `DESIGN.md` with their agreed responsibilities.
-- No stale product names, framework references, unsupported commands, secrets, or generated artifacts remain in any of the four docs.
-- The narrowest relevant test, typecheck, lint, build, or CLI check passes; if it cannot, the exact blocker and the residual documentation risk are stated.
+1. Ensure `docs/`, `docs/DOMAIN.md`, `docs/CONSTRAINTS.md`, and `docs/DESIGN.md` exist. Missing `DOMAIN.md` follows the sibling template; missing `CONSTRAINTS.md` starts with `# Constraints`; missing `DESIGN.md` is empty.
+2. Find the change surface from the user's request, session decisions, and current diff. Read only the owning source, its tests or config, and the three docs.
+3. Route each changed fact: project truth → `DOMAIN.md`; durable non-negotiable rule → `CONSTRAINTS.md` per `Constraint Harvesting`; verified UI rule → `DESIGN.md`. Every edited statement must trace to current code, config, verified output, or a confirmed session decision.
+4. Remove stale claims, unsupported commands, and any duplicate or one-off rule surfaced by the sync.
+5. Run the narrowest test, typecheck, lint, build, or CLI check that covers the change. State any blocker and the residual documentation risk if it cannot run.
